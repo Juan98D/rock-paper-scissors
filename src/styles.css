@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} 
+.item img{
+    height: 200px;
+    width: 280px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.text {
+    text-align: center;
+}
+
+.zonePlay {
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.item {
+    border: 2px black solid;
+    border-radius: 50px;
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+}
+
+.zone-score {
+    display: flex;
+    width: 250px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-score {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+}

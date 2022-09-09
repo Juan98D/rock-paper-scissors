@@ -4,13 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
     
-
-
-
-    <script src="./main.js"></script>
+<h1 class="title">Rock - Paper - Scissors</h1>
+<p class="text">Select your tool. Good luck, you'll need it!</p>
+<main class="zonePlay">
+    
+    <section class="player">
+        <div class="item rock" value="PIEDRA">
+            <img src="./src/img/roca.png" alt="">
+        </div>
+        <div class="item paper" value="PAPEL">
+            <img src="./src/img/pngwing.com.png" alt="">
+        </div>
+        <div class="item scissors" value="TIJERA">
+            <img src="./src/img/tijera.png" alt="">
+        </div>
+    </section>
+</main>
+<section class="score">
+    <div class="zone-score">
+        <p>Player points:</p>
+        <div class="container-score">
+            <p class="player-points"></p>
+        </div>
+    </div>
+    <p class="summary"></p>
+    <div class="zone-score">
+        <p>Compuer points:</p>
+        <div class="container-score">
+            <p class="computer-points"></p>
+        </div>
+    </div>
+</section>
+<script src="./main.js"></script>
 </body>
 </html>

@@ -1,16 +1,13 @@
-function getPlayerSelection() {
-    let playerSelecion = prompt('elija un valor: \n1)Piedra\n2)Tijera\n3)Papel').toUpperCase();
-    console.log(playerSelecion)
-    if (playerSelecion === 'PIEDRA') {
-        return 'PIEDRA'
-        
-    } else if (playerSelecion == 'TIJERA') {
-        return 'TIJERA'
-    } else if (playerSelecion === 'PAPEL') {
-        return 'PAPEL'
-    }
-    
-};
+/*VARIABLES*/
+let respnseRound;
+let selector = document.querySelectorAll('.item');
+let player;
+let computerSelection;
+let pointsPlayer = 0;
+let pointsComputer = 0
+let viewPointsPlayer = document.querySelector('.player-points');
+let viewPointsComputer = document.querySelector('.computer-points');
+let summary = document.querySelector('.summary')
 
 function getComputerChoice() {
     let computerSelection = Math.floor(Math.random()*3)+1;
@@ -28,9 +25,6 @@ function playRound (playerSelection, computerSelection) {
 
     console.log(playerSelection + ' ' + computerSelection);
 
-    if((playerSelection === 'TIJERA' || playerSelection === 'PIEDRA' || playerSelection === 'PAPEL') && 
-    (computerSelection === 'TIJERA' || computerSelection === 'PIEDRA' || computerSelection === 'PAPEL')){
-
         if(playerSelection === computerSelection) {
             console.log('Empate')
             return 3
@@ -46,47 +40,48 @@ function playRound (playerSelection, computerSelection) {
         } else {
             console.log('COMPUTER WIN!!!')
             return 2
-        }        
-
-    } else {
-        console.log('Seleccione una opcion valida')
-    }
-
+        }       
 }
 
-function game () {
-
-    pointsComputer = 0;
-    pointsPlayer = 0; 
-
-    
-    for(let i = 0;i<4;i++) {
-        let round = playRound(getPlayerSelection(),getComputerChoice())
-    
-        if(round === 1){
-                pointsPlayer +=1
-        } else if(round === 2) {
-                pointsComputer +=1
-        } else {
-               pointsComputer += 0;
-               pointsPlayer += 0; 
-        }
-    }
-    
-    console.log(`Points player: ${pointsPlayer}, poinst computer: ${pointsComputer}`)
-    
-    if(pointsPlayer > pointsComputer){
-        console.log('CHAMPION!!!')
-    } else if (pointsComputer === pointsPlayer) {
-        console.log('it was a sad draw')
+function fiveRound(res){
+    summary.innerText = ''
+    if(res === 1){
+        pointsPlayer += 1
+        viewPointsPlayer.innerText = pointsPlayer;
+    } else if (res == 2){
+        pointsComputer += 1;
+        viewPointsComputer.innerText = pointsComputer;
     } else {
-        console.log('You Lose! Paper beats Rock')
+        pointsComputer += 1;
+        pointsPlayer += 1
+        viewPointsPlayer.innerText = pointsPlayer;
+        viewPointsComputer.innerText = pointsComputer;
     }
-
     
+    if (pointsComputer == 5){
+        summary.innerText = 'You are a disappointment you have lost the battle'
+        pointsComputer = 0;
+        pointsPlayer = 0;
+        viewPointsComputer.innerText = pointsComputer;
+        viewPointsPlayer.innerText = pointsPlayer;
+    } else if(pointsPlayer == 5){
+        summary.innerText = 'You are a champion, you have won the battle.'
+        console.log('Win PLAYER!!!')
+        pointsPlayer = 0;
+        pointsComputer = 0;
+        viewPointsPlayer.innerText = pointsPlayer;
+        viewPointsComputer.innerText = pointsComputer;
+    }
 }
 
-game()
+selector.forEach(Element => {
+    Element.addEventListener('click', () => {
+        player = Element.getAttribute('value');
+        computerSelection = getComputerChoice();
 
-  /*1. piedra 2. tijera 3. papel */
-
+        respnseRound = playRound(player,computerSelection);
+        console.log(respnseRound)
+        fiveRound(respnseRound);
+        console.log(`puntos player: ${pointsPlayer} puntos computer: ${pointsComputer}`)
+    })
+})
